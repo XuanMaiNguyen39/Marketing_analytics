@@ -1,0 +1,9 @@
+Rank,Feature,Mean_Abs_SHAP,Direction,Business_Interpretation
+1,Monetary,0.5806902110543173,Higher spend → lower churn risk,Total spend is the strongest churn predictor. Low-spend customers are the primary risk group.
+2,Frequency,0.4441393078184243,Higher frequency → strong churn protection (asymmetric),Repeat buyers are very unlikely to churn. High-frequency customers get extreme protection; low-frequency adds only mild risk.
+3,AverageRevenuePerOrder,0.3294478373920078,Higher AOV → lower churn risk,Customers placing larger orders show more commitment and lower churn probability.
+4,UniqueItemsPerOrder,0.19695422370095417,Higher diversity → lower churn risk,Broader product engagement signals stickiness. Cross-category buyers are harder to lose.
+5,Recency,0.17016408137551262,More days inactive → higher churn risk,Expected direction but only 5th in importance. Signal partially absorbed by Monetary and Frequency.
+6,MonetaryVolatility,0.02300572774922959,Near-zero impact,"Spending consistency does not differentiate churners, likely due to sparse order histories (median 3–5 orders)."
+7,Lastdaytofirstday,0.020220204575230247,Near-zero impact,Normalised disengagement signal adds no value beyond raw Recency.
+8,InterPurchaseInterval,0.013932019060734236,Near-zero impact,Purchase timing regularity carries no signal after Frequency and Recency are accounted for.
