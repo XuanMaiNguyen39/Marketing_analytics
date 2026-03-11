@@ -1,0 +1,97 @@
+/* CIRPA McKinsey Visual Standard */
+
+:root {
+    --mck-dark: #051C2C;
+    --mck-blue: #027BFF;
+    --mck-light-grey: #E8E8E8;
+    --mck-grey: #8C8C8C;
+    --mck-bg: #FAFAFA;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+/* ---- DASHBOARD TITLE (top-left, always on dark nav) ---- */
+#header-left { background-color: var(--mck-dark) !important; }
+h2#dashboard-title {
+    font-family: Georgia, "Times New Roman", serif !important;
+    font-weight: 700 !important;
+    font-size: 1.1rem !important;
+    color: #FFFFFF !important;
+}
+
+/* ---- PAGE TITLE — targets the actual Vizro element ---- */
+h2#page-title,
+h2#page-title span,
+#page-header h2,
+#page-header span {
+    font-family: Georgia, "Times New Roman", serif !important;
+    font-weight: 700 !important;
+    font-size: 1.4rem !important;
+}
+
+/* Light: dark text */
+[data-bs-theme="light"] h2#page-title,
+[data-bs-theme="light"] h2#page-title span,
+[data-bs-theme="light"] #page-header h2,
+[data-bs-theme="light"] #page-header span {
+    color: var(--mck-dark) !important;
+}
+
+/* Dark: white text */
+[data-bs-theme="dark"] h2#page-title,
+[data-bs-theme="dark"] h2#page-title span,
+[data-bs-theme="dark"] #page-header h2,
+[data-bs-theme="dark"] #page-header span {
+    color: #FFFFFF !important;
+}
+
+/* ---- NAV BAR ---- */
+.nav-bar { background-color: var(--mck-dark) !important; }
+.nav-link-label {
+    font-size: 0.75rem !important;
+    text-transform: uppercase !important;
+}
+
+/* ---- CONTAINER TITLES ---- */
+.container-title {
+    font-family: Georgia, "Times New Roman", serif !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+}
+[data-bs-theme="light"] .container-title { color: var(--mck-dark) !important; }
+[data-bs-theme="dark"] .container-title { color: #FFFFFF !important; }
+
+/* ---- CARDS — compact ---- */
+.card {
+    border: 1px solid var(--mck-light-grey) !important;
+    border-left: 3px solid var(--mck-blue) !important;
+    border-radius: 0 !important;
+    padding: 10px 14px !important;
+}
+[data-bs-theme="light"] .card { background-color: #FFFFFF !important; }
+[data-bs-theme="dark"] .card { background-color: #1a1a2e !important; border-color: #333 !important; border-left-color: var(--mck-blue) !important; }
+
+.card p, .card li {
+    font-size: 0.8rem !important;
+    line-height: 1.45 !important;
+    margin-bottom: 4px !important;
+}
+[data-bs-theme="light"] .card p, [data-bs-theme="light"] .card li { color: var(--mck-dark) !important; }
+[data-bs-theme="dark"] .card p, [data-bs-theme="dark"] .card li { color: #e0e0e0 !important; }
+
+.card strong, .card b { font-weight: 700 !important; }
+.card table { font-size: 0.75rem !important; border-collapse: collapse !important; width: 100% !important; }
+.card th { background-color: var(--mck-dark) !important; color: #FFFFFF !important; padding: 4px 8px !important; }
+.card td { padding: 3px 8px !important; border-bottom: 1px solid var(--mck-light-grey) !important; }
+
+/* ---- GRAPH CONTAINERS ---- */
+.graph-container { border-radius: 0 !important; }
+[data-bs-theme="light"] .graph-container { background-color: #FFFFFF !important; border: 1px solid var(--mck-light-grey) !important; }
+[data-bs-theme="dark"] .graph-container { background-color: transparent !important; border: 1px solid #333 !important; }
+
+/* ---- SCROLLBAR ---- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--mck-bg); }
+::-webkit-scrollbar-thumb { background: var(--mck-grey); border-radius: 3px; }
