@@ -15,10 +15,16 @@ import vizro.models as vm
 from vizro import Vizro
 from vizro.managers import data_manager
 from vizro.models.types import capture
+import os
 
-Cirpa_final = Vizro()
-Cirpa_final.build()
-server = Cirpa_final.dash.server
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+#DATA_DIR = os.path.join(BASE_DIR, "Data_source")
+#Cirpa_final = Vizro()
+##Cirpa_final.build()
+
+#server = Cirpa_final.dash.server
+
 
 # Reset on re-run
 from vizro.managers import model_manager
@@ -31,16 +37,29 @@ except Exception:
 # LOAD DATA
 # =============================================================================
 
-DATA_DIR = "/Users/nxmai0309/Documents/My project/Marketing_analytics"
+# =============================================================================
+# LOAD DATA
+# =============================================================================
 
-master = pd.read_csv(f"{DATA_DIR}/master_scoring_table.csv")
-roi = pd.read_csv(f"{DATA_DIR}/roi_scenario_grid.csv")
-shap_global = pd.read_csv(f"{DATA_DIR}/shap_global_interpretation.csv")
+import os
+#BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+OUTPUTS_DIR = os.path.join(BASE_DIR, "outputs")
+master = pd.read_csv(os.path.join(OUTPUTS_DIR, "master_scoring_table.csv"))
+roi = pd.read_csv(os.path.join(OUTPUTS_DIR, "roi_scenario_grid.csv"))
+shap_global = pd.read_csv(os.path.join(OUTPUTS_DIR, "shap_global_interpretation.csv"))
+churn_scores = pd.read_csv(os.path.join(OUTPUTS_DIR, "customer_churn_scores.csv"))
+clv_binary = pd.read_csv(os.path.join(OUTPUTS_DIR, "customer_clv_binary_scores.csv"))
 
-DATA_DIR = "/Users/nxmai0309/Documents/My project/Marketing_analytics/outputs"
+##DATA_DIR = "/Users/nxmai0309/Documents/My project/Marketing_analytics"
+
+#master = pd.read_csv(f"{DATA_DIR}/master_scoring_table.csv")
+#roi = pd.read_csv(f"{DATA_DIR}/roi_scenario_grid.csv")
+#shap_global = pd.read_csv(f"{DATA_DIR}/shap_global_interpretation.csv")
+
+#DATA_DIR = "/Users/nxmai0309/Documents/My project/Marketing_analytics/outputs"
 # Also load the churn + CLV binary scores for the priority matrix scatter
-churn_scores = pd.read_csv(f"{DATA_DIR}/customer_churn_scores.csv")
-clv_binary = pd.read_csv(f"{DATA_DIR}/customer_clv_binary_scores.csv")
+#churn_scores = pd.read_csv(f"{DATA_DIR}/customer_churn_scores.csv")
+#clv_binary = pd.read_csv(f"{DATA_DIR}/customer_clv_binary_scores.csv")
 
 # Back-transform log Monetary to £
 master["Monetary_GBP"] = np.exp(master["Monetary"])
@@ -929,6 +948,13 @@ dashboard = vm.Dashboard(
     ),
 )
 
-#Vizro().build(dashboard).run(port=8050, jupyter_mode="external")
+  # your existing dashboard definition
+
+Cirpa_final = Vizro().build(dashboard)
+server = Cirpa_final.dash.server
+
 if __name__ == "__main__":
     Cirpa_final.run()
+#Vizro().build(dashboard).run(port=8050, jupyter_mode="external")
+#if __name__ == "__main__":
+#    Cirpa_final.run()
