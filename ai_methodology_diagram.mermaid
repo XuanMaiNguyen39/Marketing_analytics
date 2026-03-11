@@ -1,0 +1,116 @@
+flowchart TB
+    subgraph CHARTER ["📋 PROJECT CHARTER"]
+        direction LR
+        CH1[Business Questions Q1-Q4]
+        CH2[Risk Register RK01-RK08]
+        CH3[Quality Gates QG1-QG5]
+        CH4[Research Agenda R1-R10]
+    end
+
+    CHARTER --> PHASE
+
+    subgraph PHASE ["🔄 PER-GOAL WORKFLOW (DA-1 through DA-7)"]
+        direction TB
+
+        subgraph PLAN ["🎯 PLANNING — AI-Augmented Advisory"]
+            direction TB
+            A["Define Goal & Business Question
+            (from DA Goals Document)"]
+            B["Scope Required Outputs
+            & Success Criteria"]
+            C{"Cost-Benefit Gate
+            Does this change a
+            modelling decision?"}
+            D["Design Analytical Approach
+            (statistical tests, features, methods)"]
+            E["✂️ Cut or Simplify
+            (no downstream impact)"]
+            F["AI Advisory Review
+            • Statistical validity check
+            • Data limitation surfacing
+            • Methodology alternatives"]
+            G{"Statistically Sound
+            & Feasible?"}
+            H["✅ Lock Decision
+            Proceed to Implementation"]
+
+            A --> B --> C
+            C -->|"Yes — proceed"| D
+            C -->|"No impact"| E
+            D --> F --> G
+            G -->|"Yes"| H
+            G -->|"Revise approach"| D
+        end
+
+        subgraph EXEC ["⚡ EXECUTION — Independent (JupyterLab)"]
+            direction TB
+            I["Write & Run Code
+            (pandas, scikit-learn, XGBoost, SHAP)"]
+            J["Validate Results
+            against success criteria"]
+            K{"All Outputs
+            Complete?"}
+
+            H --> I --> J --> K
+            K -->|"No — iterate"| I
+        end
+
+        subgraph REVIEW ["🔍 REVIEW — AI-Augmented Verification"]
+            direction TB
+            L["Check Outputs vs.
+            DA Goals Document"]
+            M{"Quality Gate
+            Pass/Fail?"}
+            N["📦 Document & Archive
+            Move to next DA goal"]
+            P["Identify Gaps
+            Return to Planning"]
+
+            K -->|"Yes"| L --> M
+            M -->|"Pass ✓"| N
+            M -->|"Fail ✗"| P
+            P --> A
+        end
+    end
+
+    N --> NEXT
+
+    subgraph NEXT ["➡️ PHASE TRANSITION"]
+        direction LR
+        PG["Phase Gate Review
+        (12 binary checks)"]
+        ML["ML Phase Begins
+        ML-1 → ML-5"]
+        PG -->|"All pass"| ML
+    end
+
+    subgraph EXAMPLES ["💡 REAL DECISIONS SHAPED BY AI ADVISORY"]
+        direction TB
+        EX1["MonetaryTrend DROPPED
+        Median 3-5 orders makes
+        regression slopes unreliable"]
+        EX2["Returns Attribution GAP
+        All returns have null CustomerIDs
+        — cannot compute per-customer"]
+        EX3["Wholesale/Retail ELEVATED
+        Bimodal distribution confirmed
+        — critical segmentation axis"]
+        EX4["Academic Padding CUT
+        Tasks with no downstream
+        modelling impact removed"]
+    end
+
+    style CHARTER fill:#2d1b69,stroke:#8b5cf6,color:#e2e8f0
+    style PLAN fill:#1a1a2e,stroke:#e94560,color:#e2e8f0
+    style EXEC fill:#16213e,stroke:#3b82f6,color:#e2e8f0
+    style REVIEW fill:#0f3460,stroke:#22d3ee,color:#e2e8f0
+    style NEXT fill:#064e3b,stroke:#10b981,color:#e2e8f0
+    style EXAMPLES fill:#78350f,stroke:#f59e0b,color:#e2e8f0
+
+    style E fill:#7f1d1d,stroke:#ef4444,color:#fecaca
+    style H fill:#14532d,stroke:#22c55e,color:#dcfce7
+    style N fill:#14532d,stroke:#22c55e,color:#dcfce7
+    style EX1 fill:#451a03,stroke:#f97316,color:#fed7aa
+    style EX2 fill:#451a03,stroke:#f97316,color:#fed7aa
+    style EX3 fill:#451a03,stroke:#f97316,color:#fed7aa
+    style EX4 fill:#451a03,stroke:#f97316,color:#fed7aa
