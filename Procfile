@@ -1,1 +1,1 @@
-web: gunicorn app:server
+web: gunicorn Cirpa_final:server --bind 0.0.0.0:$PORT
